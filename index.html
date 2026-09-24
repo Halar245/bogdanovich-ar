@@ -2,161 +2,116 @@
 <html lang="be">
 
 <head>
-
   <meta charset="UTF-8">
 
   <meta name="viewport"
-        content="width=device-width,
-        initial-scale=1.0,
-        maximum-scale=1.0,
-        user-scalable=no">
+        content="width=device-width, initial-scale=1.0">
 
-  <title>
-    Жывы верш — Максім Багдановіч
-  </title>
-
-
-  <!-- MindAR -->
-
-  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image.prod.js"></script>
-
+  <title>ЖЫВЫ ВЕРШ — Маёвая песня</title>
 
   <!-- A-Frame -->
-
   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
 
+  <!-- MindAR -->
+  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image.prod.js"></script>
 
   <!-- MindAR + A-Frame -->
-
   <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
-
 
   <style>
 
     html,
     body {
-
       margin: 0;
       padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+
+    #start {
+      position: fixed;
+      z-index: 1000;
+
+      top: 0;
+      left: 0;
 
       width: 100%;
       height: 100%;
 
-      overflow: hidden;
+      display: flex;
+      flex-direction: column;
 
-      font-family:
-        Arial,
-        sans-serif;
-
-      background: #000;
-    }
-
-
-    #start {
-
-      position: fixed;
-
-      z-index: 100;
-
-      left: 50%;
-      top: 50%;
-
-      transform:
-        translate(-50%, -50%);
-
-      width: 85%;
-
-      max-width: 400px;
-
-      padding: 30px 20px;
-
-      box-sizing: border-box;
+      justify-content: center;
+      align-items: center;
 
       text-align: center;
 
-      background:
-        rgba(255,255,255,0.95);
-
-      border-radius: 20px;
-
-      box-shadow:
-        0 5px 30px
-        rgba(0,0,0,0.3);
-    }
-
-
-    #start h1 {
-
-      margin-top: 0;
-
-      font-size: 27px;
-
-      color: #333;
-    }
-
-
-    #start p {
-
-      font-size: 17px;
-
-      line-height: 1.5;
-
-      color: #555;
-    }
-
-
-    #start button {
-
-      padding: 14px 30px;
-
-      border: none;
-
-      border-radius: 30px;
-
-      background: #333;
+      background: rgba(0, 0, 0, 0.88);
 
       color: white;
+    }
 
+    #start h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    #start p {
       font-size: 17px;
+      max-width: 320px;
+      line-height: 1.5;
+    }
+
+    #startButton {
+      margin-top: 20px;
+
+      padding: 15px 30px;
+
+      font-size: 18px;
+
+      border: none;
+      border-radius: 10px;
+
+      background: #ffffff;
+      color: #222;
 
       cursor: pointer;
     }
 
-
     #poem {
-
       position: fixed;
 
-      z-index: 50;
-
-      left: 5%;
-      right: 5%;
-
+      left: 50%;
       bottom: 30px;
+
+      transform: translateX(-50%);
+
+      width: 85%;
+      max-width: 500px;
+
+      padding: 18px;
+
+      box-sizing: border-box;
+
+      background: rgba(255, 255, 255, 0.92);
+
+      border-radius: 15px;
 
       text-align: center;
 
-      color: white;
-
-      font-size: 21px;
-
+      font-size: 18px;
       line-height: 1.5;
-
-      text-shadow:
-        0 2px 5px #000,
-        0 0 10px #000;
 
       opacity: 0;
 
-      transition:
-        opacity 1.5s ease;
+      transition: opacity 0.7s;
 
-      pointer-events: none;
+      z-index: 900;
     }
 
-
     #poem.show {
-
       opacity: 1;
     }
 
@@ -167,38 +122,39 @@
 
 <body>
 
-
-  <!-- Уступ -->
+  <!-- Стартавае акно -->
 
   <div id="start">
 
-    <h1>
-      🦋 ЖЫВЫ ВЕРШ
-    </h1>
+    <h1>🦋 ЖЫВЫ ВЕРШ</h1>
 
     <p>
-      Максім Багдановіч
-    </p>
-
-    <p>
-      Навядзіце камеру на
-      выяву матылька.
+      Навядзіце камеру смартфона
+      на выяву матылька.
     </p>
 
     <button id="startButton">
-
-      АЖЫВІЦЬ ВЕРШ
-
+      Пачаць AR
     </button>
 
   </div>
 
 
-  <!-- Тэкст -->
+  <!-- Тэкст верша -->
 
   <div id="poem">
 
+    <strong>Маёвая песня</strong>
+
+    <br><br>
+
     Па-над белым пухам вішняў...
+
+    <br><br>
+
+    <em>
+      Максім Багдановіч
+    </em>
 
   </div>
 
@@ -208,15 +164,10 @@
   <a-scene
 
     mindar-image="
-      imageTargetSrc:
-      ./targets.mind;
-
+      imageTargetSrc: ./targets.mind;
       autoStart: false;
-
       uiLoading: no;
-
       uiScanning: no;
-
       uiError: no;
     "
 
@@ -224,16 +175,13 @@
 
     renderer="
       colorManagement: true;
-      physicallyCorrectLights
+      physicallyCorrectLights: true;
     "
 
-    vr-mode-ui="
-      enabled: false
-    "
+    vr-mode-ui="enabled: false"
 
-    device-orientation-permission-ui="
-      enabled: false
-    ">
+    device-orientation-permission-ui="enabled: false"
+  >
 
 
     <!-- Камера -->
@@ -242,29 +190,21 @@
 
       position="0 0 0"
 
-      look-controls="
-        enabled: false
-      "
+      look-controls="enabled: false"
 
-      cursor="
-        fuse: false;
-        rayOrigin: mouse;
-      "
+      cursor="fuse: false; rayOrigin: mouse"
 
-      raycaster="
-        far: 10000;
-        objects: .clickable;
-      ">
+      raycaster="far: 10000; objects: .clickable"
 
-    </a-camera>
+    ></a-camera>
 
 
     <!-- AR-маркер -->
 
     <a-entity
-      mindar-image-target="
-        targetIndex: 0
-      ">
+
+      mindar-image-target="targetIndex: 0"
+    >
 
 
       <!-- Матылёк -->
@@ -273,57 +213,33 @@
 
         src="./butterfly.png"
 
-        position="
-          0
-          0.20
-          0
-        "
+        position="0 0.25 0"
 
-        width="0.8"
+        width="1"
 
-        height="0.8"
+        height="0.7"
 
         animation__float="
-
           property: position;
-
-          from: 0 0.20 0;
-
-          to: 0 0.32 0;
-
+          from: 0 0.25 0;
+          to: 0 0.35 0;
           dur: 1800;
-
-          easing:
-            easeInOutSine;
-
+          easing: easeInOutSine;
           loop: true;
-
           dir: alternate;
         "
 
         animation__scale="
-
           property: scale;
+          from: 1 1 1;
+          to: 1.08 1.08 1.08;
+          dur: 1800;
+          easing: easeInOutSine;
+          loop: true;
+          dir: alternate;
+        "
 
-          from:
-            0.75
-            0.75
-            0.75;
-
-          to:
-            1
-            1
-            1;
-
-          dur: 1000;
-
-          easing:
-            easeOutElastic;
-
-          loop: false;
-        ">
-
-      </a-image>
+      ></a-image>
 
 
       <!-- Вішнёвая галінка -->
@@ -332,45 +248,26 @@
 
         src="./branch.png"
 
-        position="
-          0
-          -0.45
-          0
-        "
+        position="0 -0.35 0"
 
         width="1.8"
 
         height="0.7"
 
         animation="
-
           property: rotation;
-
-          from:
-            0
-            0
-            -2;
-
-          to:
-            0
-            0
-            2;
-
+          from: 0 0 -2;
+          to: 0 0 2;
           dur: 2500;
-
-          easing:
-            easeInOutSine;
-
+          easing: easeInOutSine;
           loop: true;
-
           dir: alternate;
-        ">
+        "
 
-      </a-image>
+      ></a-image>
 
 
     </a-entity>
-
 
   </a-scene>
 
@@ -378,19 +275,20 @@
   <!-- Музыка -->
 
   <audio
+
     id="music"
+
     src="./music.mp3"
-    preload="auto">
-  </audio>
+
+    preload="auto"
+
+  ></audio>
 
 
   <script>
 
-
     const scene =
-      document.querySelector(
-        "a-scene"
-      );
+      document.querySelector("a-scene");
 
 
     const target =
@@ -400,27 +298,19 @@
 
 
     const start =
-      document.getElementById(
-        "start"
-      );
+      document.getElementById("start");
 
 
     const button =
-      document.getElementById(
-        "startButton"
-      );
+      document.getElementById("startButton");
 
 
     const poem =
-      document.getElementById(
-        "poem"
-      );
+      document.getElementById("poem");
 
 
     const music =
-      document.getElementById(
-        "music"
-      );
+      document.getElementById("music");
 
 
     /*
@@ -432,33 +322,40 @@
 
       async function () {
 
-        start.style.display =
-          "none";
-
-
-        const mindarSystem =
-          scene.systems[
-            "mindar-image-system"
-          ];
-
-
         try {
 
+          const mindarSystem =
+            scene.systems["mindar-image-system"];
+
+
           await mindarSystem.start();
+
+
+          start.style.display = "none";
+
+
+          console.log(
+            "AR запушчаны"
+          );
 
         }
 
         catch (error) {
 
-          console.error(error);
+          console.error(
+            "Памылка камеры:",
+            error
+          );
+
 
           alert(
-            "Не атрымалася запусціць камеру."
+            "Не атрымалася запусціць камеру. Праверце дазвол камеры ў браўзеры."
           );
 
         }
 
       }
+
     );
 
 
@@ -488,12 +385,17 @@
 
         music.currentTime = 0;
 
-        music.play().catch(
-          function(error) {
 
-            console.log("Аўдыё патрабуе дадатковага націску.");
+        music.play().catch(
+
+          function (error) {
+
+            console.log(
+              "Аўдыё патрабуе дадатковага націску."
+            );
 
           }
+
         );
 
       }
@@ -511,15 +413,28 @@
 
       function () {
 
+        console.log(
+          "AR-маркер страчаны"
+        );
+
+
         poem.classList.remove(
           "show"
         );
+
 
         music.pause();
 
       }
 
     );
+
+  </script>
+
+
+</body>
+
+</html>
 
 
   </script>
